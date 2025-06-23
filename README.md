@@ -43,6 +43,30 @@ A full-stack web application that facilitates secure deal-making between buyers 
 ## 🗂️ Project Structure
 
 virtual-deal-room/
+├── client/                      # Frontend - React App
+│   ├── src/
+│   │   ├── components/          # ChatBox, DealForm, Navbar, etc.
+│   │   ├── features/            # Redux Toolkit slices, RTK Query setup
+│   │   ├── pages/               # Page-level components: Login, Register, Home
+│   │   ├── App.jsx
+│   │   └── main.jsx
+│   └── tailwind.config.js       # Tailwind CSS configuration
+
+├── server/                      # Backend - Node/Express App
+│   ├── controllers/             # Business logic for deals, chat, auth, etc.
+│   ├── models/                  # Mongoose schemas: User, Deal, Message
+│   ├── routes/                  # Express route definitions
+│   ├── middlewares/            # Authentication, error handling middleware
+│   ├── config/                  # DB & Redis configuration files
+│   ├── uploads/                 # File upload storage (optional)
+│   └── index.js                 # Main server file with Express & Socket.IO
+
+├── .env                         # Environment variables
+├── package.json                 # Project metadata and dependencies
+└── README.md                    # Project documentation
+
+
+virtual-deal-room/
 ├── client/                  # Frontend React App
 │   ├── src/
 │   │   ├── components/      # ChatBox, DealForm, Navbar, etc.
