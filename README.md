@@ -70,29 +70,6 @@ virtual-deal-room/
 ```
 
 
-virtual-deal-room/
-├── client/                  # Frontend React App
-│   ├── src/
-│   │   ├── components/      # ChatBox, DealForm, Navbar, etc.
-│   │   ├── features/        # Redux Toolkit slices, RTK Query setup
-│   │   ├── pages/           # Login.jsx, Register.jsx, Home.jsx
-│   │   ├── App.jsx
-│   │   └── main.jsx
-│   └── tailwind.config.js   # Tailwind CSS setup
-│
-├── server/                  # Backend Node/Express App
-│   ├── controllers/         # Business logic for deals, chat, auth, etc.
-│   ├── models/              # Mongoose schemas: User, Deal, Message
-│   ├── routes/              # Express route files
-│   ├── middlewares/         # Auth, error handling
-│   ├── config/              # DB & Redis configs
-│   ├── uploads/             # File upload storage (optional)
-│   └── index.js             # Main server + Socket.IO setup
-│
-├── .env                     # Environment variables
-├── package.json             # Root-level metadata
-└── README.md
-
 ## API Endpoints
 
 ### Auth Endpoints
