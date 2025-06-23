@@ -17,16 +17,6 @@ export default function Register() {
   };
 
   return (
-    // <form onSubmit={handleSubmit}>
-    //   <input name="name" placeholder="Name" onChange={handleChange} />
-    //   <input name="email" type="email" placeholder="Email" onChange={handleChange} />
-    //   <input name="password" type="password" placeholder="Password" onChange={handleChange} />
-    //   <select name="role" onChange={handleChange}>
-    //     <option value="buyer">Buyer</option>
-    //     <option value="seller">Seller</option>
-    //   </select>
-    //   <button type="submit">Register</button>
-    // </form>
 
     <form
   onSubmit={handleSubmit}

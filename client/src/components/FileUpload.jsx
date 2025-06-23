@@ -1,6 +1,7 @@
 // === src/components/FileUpload.js ===
 import { useState } from "react";
 import axios from "axios";
+import { BASE_URL } from "../config";
 
 export default function FileUpload({ dealId, token }) {
   const [file, setFile] = useState(null);
@@ -8,7 +9,7 @@ export default function FileUpload({ dealId, token }) {
   const upload = async () => {
     const formData = new FormData();
     formData.append("file", file);
-    await axios.post(`http://localhost:5000/api/files/${dealId}`, formData, {
+    await axios.post(`${BASE_URL}/api/files/${dealId}`, formData, {
       headers: { Authorization: `Bearer ${token}` }
     });
   };

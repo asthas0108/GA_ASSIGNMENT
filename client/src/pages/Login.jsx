@@ -23,11 +23,6 @@ export default function Login() {
   };
 
   return (
-    // <form onSubmit={handleSubmit}>
-    //   <input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
-    //   <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
-    //   <button type="submit">Login</button>
-    // </form>
     <form
   onSubmit={handleSubmit}
   className="max-w-sm mx-auto mt-10 p-8 bg-white shadow-lg rounded-2xl space-y-6"

@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useCreateDealMutation } from "../features/apiSlice.js";
 import axios from "axios";
+import { BASE_URL } from "../config/index.js";
 
 export default function DealForm() {
   const [form, setForm] = useState({ title: "", description: "", price: "", seller: "" });
@@ -10,7 +11,7 @@ export default function DealForm() {
 
   useEffect(() => {
     const fetchSellers = async () => {
-      const res = await axios.get("http://localhost:5000/api/users/sellers");
+      const res = await axios.get(`${BASE_URL}/api/users/sellers`);
       setSellers(res.data);
     };
     fetchSellers();
@@ -23,13 +24,6 @@ export default function DealForm() {
   };
 
   return (
-    // <form onSubmit={handleSubmit}>
-    //   <input name="title" placeholder="Title" onChange={handleChange} />
-    //   <textarea name="description" placeholder="Description" onChange={handleChange} />
-    //   <input name="price" placeholder="Price" type="number" onChange={handleChange} />
-    //   <input name="seller" placeholder="Seller ID" onChange={handleChange} />
-    //   <button type="submit">Create Deal</button>
-    // </form>
     <form
   onSubmit={handleSubmit}
   className="max-w-lg mx-auto mt-10 p-6 bg-white shadow-xl rounded-2xl space-y-6"
@@ -58,13 +52,6 @@ export default function DealForm() {
     onChange={handleChange}
     className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
   />
-
-  {/* <input
-    name="seller"
-    placeholder="Seller ID"
-    onChange={handleChange}
-    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
-  /> */}
 
   <select
     name="seller"

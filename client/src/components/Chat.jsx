@@ -1,74 +1,10 @@
-// // === src/components/Chat.js ===
-// import { useEffect, useState } from "react";
-// import { io } from "socket.io-client";
-
-// const socket = io("http://localhost:5000");
-
-// export default function Chat({ dealId, userId }) {
-//   const [message, setMessage] = useState("");
-//   const [messages, setMessages] = useState([]);
-
-//   useEffect(() => {
-//     socket.emit("join-room", dealId);
-//     socket.on("receive-message", (msg) => {
-//       setMessages((prev) => [...prev, msg]);
-//     });
-//     return () => socket.disconnect();
-//   }, [dealId]);
-
-//   const send = () => {
-//     socket.emit("send-message", { dealId, content: message, sender: userId });
-//     setMessage("");
-//   };
-
-//   return (
-//     // <div>
-//     //   <div>
-//     //     {messages.map((m, i) => (
-//     //       <p key={i}><b>{m.sender.name}:</b> {m.content}</p>
-//     //     ))}
-//     //   </div>
-//     //   <input value={message} onChange={(e) => setMessage(e.target.value)} />
-//     //   <button onClick={send}>Send</button>
-//     // </div>
-
-//     <div className="max-w-xl mx-auto mt-6 p-6 bg-white rounded-2xl shadow-lg flex flex-col space-y-4">
-//   {/* Messages Box */}
-//   <div className="h-64 overflow-y-auto space-y-3 border border-gray-300 rounded-xl p-4 bg-gray-50">
-//     {messages.map((m, i) => (
-//       <p key={i} className="text-gray-700">
-//         <b className="text-blue-600">{m.sender.name}:</b> {m.content}
-//       </p>
-//     ))}
-//   </div>
-
-//   {/* Input + Button */}
-//   <div className="flex items-center space-x-2">
-//     <input
-//       value={message}
-//       onChange={(e) => setMessage(e.target.value)}
-//       placeholder="Type a message..."
-//       className="flex-grow px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
-//     />
-//     <button
-//       onClick={send}
-//       className="px-5 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition duration-200"
-//     >
-//       Send
-//     </button>
-//   </div>
-// </div>
-
-//   );
-// }
-
-
-// ChatBox.js
 import { useEffect, useState } from "react";
 import io from "socket.io-client";
 import axios from "axios";
 import { useSelector } from "react-redux";
-const socket = io("http://localhost:5000");
+import { BASE_URL } from "../config";
+// const socket = io("http://localhost:5000");
+const socket = io(`${BASE_URL}`);
 
 export default function ChatBox({ dealId, user }) {
   const [messages, setMessages] = useState([]);
@@ -79,7 +15,7 @@ export default function ChatBox({ dealId, user }) {
   useEffect(() => {
     socket.emit("joinRoom", dealId);
     axios
-      .get(`http://localhost:5000/api/chat/${dealId}`, {
+      .get(`${BASE_URL}/api/chat/${dealId}`, {
         headers: { Authorization: `Bearer ${user.token}` },
       })
       .then((res) => setMessages(res.data));
@@ -95,7 +31,7 @@ export default function ChatBox({ dealId, user }) {
 
   const handleSend = async () => {
     await axios.post(
-      `http://localhost:5000/api/chat/send`,
+      `${BASE_URL}/api/chat/send`,
       { dealId, text },
       { headers: { Authorization: `Bearer ${token}` } }
     );

@@ -4,6 +4,7 @@ import { useGetDealsQuery } from "../features/apiSlice";
 import DealForm from "../components/DealForm";
 import Chat from "../components/Chat";
 import axios from "axios";
+import { BASE_URL } from "../config";
 
 export default function Home() {
   const { user, token } = useSelector((state) => state.auth);
@@ -12,7 +13,7 @@ export default function Home() {
   const handleStatusChange = async (id, status) => {
     try {
       await axios.put(
-        `http://localhost:5000/api/deals/${id}/status`,
+        `${BASE_URL}/api/deals/${id}/status`,
         { status },
         {
           headers: {
@@ -43,7 +44,7 @@ export default function Home() {
   const handlePayment = async (deal) => {
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/payment/create-order",
+        `${BASE_URL}/api/payment/create-order`,
         { amount: deal.price, dealId: deal._id },
         {
           headers: { Authorization: `Bearer ${token}` },
