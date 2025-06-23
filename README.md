@@ -42,7 +42,33 @@ A full-stack web application that facilitates secure deal-making between buyers 
 
 ## 🗂️ Project Structure
 
-<pre> virtual-deal-room/ ├── client/ # Frontend React App │ ├── src/ │ │ ├── components/ # ChatBox, DealForm, Navbar, etc. │ │ ├── features/ # Redux Toolkit slices, RTK Query setup │ │ ├── pages/ # Login.jsx, Register.jsx, Home.jsx │ │ ├── App.jsx │ │ └── main.jsx │ └── tailwind.config.js # Tailwind CSS configuration │ ├── server/ # Backend Node/Express App │ ├── controllers/ # Logic for deals, chat, auth, etc. │ ├── models/ # Mongoose schemas (User, Deal, Message) │ ├── routes/ # API route files │ ├── middlewares/ # Auth and error handlers │ ├── config/ # Database and Redis configs │ ├── uploads/ # File upload storage (optional) │ └── index.js # Express server and Socket.IO setup │ ├── .env # Environment variables ├── package.json # Project metadata └── README.md # Project documentation </pre>
+## 📁 Folder Structure
+
+```plaintext
+virtual-deal-room/
+├── client/                     # Frontend React App
+│   ├── src/
+│   │   ├── components/         # ChatBox, DealForm, Navbar, etc.
+│   │   ├── features/           # Redux Toolkit slices, RTK Query setup
+│   │   ├── pages/              # Login.jsx, Register.jsx, Home.jsx
+│   │   ├── App.jsx
+│   │   └── main.jsx
+│   └── tailwind.config.js      # Tailwind CSS configuration
+│
+├── server/                     # Backend Node/Express App
+│   ├── controllers/            # Logic for deals, chat, auth, etc.
+│   ├── models/                 # Mongoose schemas (User, Deal, Message)
+│   ├── routes/                 # API route files
+│   ├── middlewares/            # Auth and error handlers
+│   ├── config/                 # Database and Redis configs
+│   ├── uploads/                # File upload storage (optional)
+│   └── index.js                # Express server and Socket.IO setup
+│
+├── .env                        # Environment variables
+├── package.json                # Project metadata
+└── README.md                   # Project documentation
+```
+
 
 virtual-deal-room/
 ├── client/                  # Frontend React App
