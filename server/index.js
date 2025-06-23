@@ -13,6 +13,7 @@ import adminRoutes from "./routes/admin.route.js";
 import userRoutes from "./routes/user.route.js";
 import fileRoutes from "./routes/file.route.js";
 import chatRoutes from './routes/message.route.js';
+import paymentRoutes from "./routes/payment.route.js";
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -40,6 +41,7 @@ app.use("/api/files", fileRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/users", userRoutes);
 app.use('/api/chat', chatRoutes);
+app.use("/api/payment", paymentRoutes);
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.get("/", (req, res) => res.send("API running"));
