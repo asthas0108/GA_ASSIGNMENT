@@ -1,0 +1,136 @@
+// // === src/components/Chat.js ===
+// import { useEffect, useState } from "react";
+// import { io } from "socket.io-client";
+
+// const socket = io("http://localhost:5000");
+
+// export default function Chat({ dealId, userId }) {
+//   const [message, setMessage] = useState("");
+//   const [messages, setMessages] = useState([]);
+
+//   useEffect(() => {
+//     socket.emit("join-room", dealId);
+//     socket.on("receive-message", (msg) => {
+//       setMessages((prev) => [...prev, msg]);
+//     });
+//     return () => socket.disconnect();
+//   }, [dealId]);
+
+//   const send = () => {
+//     socket.emit("send-message", { dealId, content: message, sender: userId });
+//     setMessage("");
+//   };
+
+//   return (
+//     // <div>
+//     //   <div>
+//     //     {messages.map((m, i) => (
+//     //       <p key={i}><b>{m.sender.name}:</b> {m.content}</p>
+//     //     ))}
+//     //   </div>
+//     //   <input value={message} onChange={(e) => setMessage(e.target.value)} />
+//     //   <button onClick={send}>Send</button>
+//     // </div>
+
+//     <div className="max-w-xl mx-auto mt-6 p-6 bg-white rounded-2xl shadow-lg flex flex-col space-y-4">
+//   {/* Messages Box */}
+//   <div className="h-64 overflow-y-auto space-y-3 border border-gray-300 rounded-xl p-4 bg-gray-50">
+//     {messages.map((m, i) => (
+//       <p key={i} className="text-gray-700">
+//         <b className="text-blue-600">{m.sender.name}:</b> {m.content}
+//       </p>
+//     ))}
+//   </div>
+
+//   {/* Input + Button */}
+//   <div className="flex items-center space-x-2">
+//     <input
+//       value={message}
+//       onChange={(e) => setMessage(e.target.value)}
+//       placeholder="Type a message..."
+//       className="flex-grow px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+//     />
+//     <button
+//       onClick={send}
+//       className="px-5 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition duration-200"
+//     >
+//       Send
+//     </button>
+//   </div>
+// </div>
+
+//   );
+// }
+
+
+// ChatBox.js
+import { useEffect, useState } from "react";
+import io from "socket.io-client";
+import axios from "axios";
+import { useSelector } from "react-redux";
+const socket = io("http://localhost:5000");
+
+export default function ChatBox({ dealId, user }) {
+  const [messages, setMessages] = useState([]);
+  const [text, setText] = useState("");
+
+  const token = useSelector((state) => state.auth.token);
+
+  useEffect(() => {
+    socket.emit("joinRoom", dealId);
+    axios
+      .get(`http://localhost:5000/api/chat/${dealId}`, {
+        headers: { Authorization: `Bearer ${user.token}` },
+      })
+      .then((res) => setMessages(res.data));
+
+    socket.on("newMessage", (msg) => {
+      setMessages((prev) => [...prev, msg]);
+    });
+
+    return () => {
+      socket.off("newMessage");
+    };
+  }, [dealId, user.token]);
+
+  const handleSend = async () => {
+    await axios.post(
+      `http://localhost:5000/api/chat/send`,
+      { dealId, text },
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+    setText("");
+  };
+
+  return (
+    <div className="border rounded-xl p-4 mt-6 bg-gray-50">
+      <h3 className="text-lg font-semibold mb-2">Live Chat</h3>
+      <div className="h-40 overflow-y-auto border rounded p-2 bg-white mb-2">
+        {messages.map((msg) => (
+          <div
+            key={msg._id}
+            className={`text-sm py-1 ${msg.sender._id === user.id ? "text-right" : "text-left"}`}
+          >
+            <span className="px-2 py-1 rounded bg-blue-100 inline-block">
+              {msg.sender.name}: {msg.text}
+            </span>
+          </div>
+        ))}
+      </div>
+      <div className="flex gap-2">
+        <input
+          className="flex-1 px-3 py-2 border rounded"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          placeholder="Type a message..."
+        />
+        <button
+          onClick={handleSend}
+          className="bg-blue-600 text-white px-4 py-2 rounded"
+        >
+          Send
+        </button>
+      </div>
+    </div>
+  );
+}
