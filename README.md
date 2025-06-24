@@ -1,6 +1,6 @@
 # 💼 Virtual Deal Room
 
-A full-stack web application that facilitates secure deal-making between buyers and sellers. The platform supports user authentication, real-time chat, deal tracking, and payment integration using Razorpay.
+A full-stack web application that facilitates secure deal-making between buyers and sellers. The platform supports user authentication, real-time chat, deal tracking and payment integration using Razorpay.
 
 ## 🌐 Tech Stack
 
