@@ -116,3 +116,14 @@ virtual-deal-room/
 ### Negotiation and Payment
 
 [Demo Video](https://drive.google.com/file/d/1A4rb8J7BnaluGCNBHF9hCOGjU7UYGrzZ/view?usp=sharing)
+
+## Demo Login Credentials
+
+### Buyer Account:
+  - Email: asthas418@gmail.com
+  - Password: 123
+
+### Seller Account:
+  - Email: indira@gmail.com
+  - Password: 123
+
