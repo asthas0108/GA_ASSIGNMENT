@@ -103,3 +103,19 @@ virtual-deal-room/
 | ------ | --------------------------- | ------- | ------------------------------- |
 | POST   | `/api/payment/create-order` | Buyer   | Create a Razorpay payment order |
 | POST   | `/api/payment/verify`       | Buyer   | Verify and confirm the payment  |
+
+
+## 📸 Screenshots
+
+### 🔐 Authentication
+![Authentication](./screenshots/auth.png)
+
+### 💬 Dashboard for Buyer & Seller
+![Dashboard](./screenshots/dashboard.png)
+
+
+## Demo Video
+
+### Negotiation and Payment
+
+[Demo Video](https://drive.google.com/file/d/1A4rb8J7BnaluGCNBHF9hCOGjU7UYGrzZ/view?usp=sharing)
