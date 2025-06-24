@@ -5,6 +5,10 @@ import DealForm from "../components/DealForm";
 import Chat from "../components/Chat";
 import axios from "axios";
 import { BASE_URL } from "../config";
+import io from "socket.io-client";
+// const socket = io("http://localhost:5000");  
+const socket = io(`${BASE_URL}`);  
+
 
 export default function Home() {
   const { user, token } = useSelector((state) => state.auth);
@@ -26,12 +30,28 @@ export default function Home() {
       console.error("Error updating deal status:", err);
     }
   };
+useEffect(() => {
+  if (token) refetch();
 
-  useEffect(() => {
-    if (token) {
+  socket.on("dealUpdated", (updatedDeal) => {
+    const isInvolved = updatedDeal.buyer._id === user.id || updatedDeal.seller._id === user.id;
+    if (isInvolved) {
       refetch();
     }
-  }, [token, refetch]);
+  });
+
+  socket.on("dealCreated", (newDeal) => {
+    const isInvolved =
+      newDeal.buyer._id === user.id || newDeal.seller._id === user.id;
+    if (isInvolved) refetch();
+  });
+
+  return () => {
+    socket.off("dealUpdated");
+    socket.off("dealCreated");
+  };
+}, [token, refetch, user]);
+
 
   if (!user) {
     return (
@@ -61,7 +81,7 @@ export default function Home() {
         description: `Payment for deal: ${deal.title}`,
         order_id: orderId,
         handler: async function (response) {
-          alert("Payment successful 🎉");
+          alert("Payment successful ");
           await handleStatusChange(deal._id, "Paid");
           await refetch()
         },
