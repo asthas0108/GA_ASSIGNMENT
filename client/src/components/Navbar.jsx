@@ -29,7 +29,7 @@ export default function Navbar() {
             <span className="font-medium">Hello, {user.name}</span>
             <button
               onClick={handleLogout}
-              className="bg-red-500 hover:bg-red-600 px-3 py-1 rounded text-sm"
+              className="bg-red-500 hover:bg-red-600 px-3 py-1 rounded text-sm cursor-pointer"
             >
               Logout
             </button>

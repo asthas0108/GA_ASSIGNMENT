@@ -88,7 +88,7 @@ export default function Home() {
         Welcome, {user.name}
       </h1>
 
-      {user.role === "buyer" && <DealForm />}
+      {user.role === "buyer" && <DealForm refetch={refetch}/>}
 
       <h2 className="text-2xl font-semibold mt-10 mb-4">Your Deals</h2>
       {deals.length === 0 ? (
@@ -114,13 +114,13 @@ export default function Home() {
                 <div className="mt-4 space-x-2">
                   <button
                     onClick={() => handleStatusChange(deal._id, "In Progress")}
-                    className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+                    className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 cursor-pointer"
                   >
                     Accept
                   </button>
                   <button
                     onClick={() => handleStatusChange(deal._id, "Cancelled")}
-                    className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+                    className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 cursor-pointer"
                   >
                     Reject
                   </button>
@@ -136,7 +136,7 @@ export default function Home() {
               {user.role === "seller" && deal.status === "In Progress" && (
                 <button
                   onClick={() => handleStatusChange(deal._id, "Completed")}
-                  className="mt-3 px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700"
+                  className="mt-3 px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 cursor-pointer"
                 >
                   Allow Payment
                 </button>
@@ -146,7 +146,7 @@ export default function Home() {
               {user.role === "buyer" && deal.status === "Completed" && (
                 <button
                   onClick={() => handlePayment(deal)}
-                  className="bg-purple-600 text-white px-4 py-2 rounded mt-3 hover:bg-purple-700"
+                  className="bg-purple-600 text-white px-4 py-2 rounded mt-3 hover:bg-purple-700 cursor-pointer"
                 >
                   Pay Now
                 </button>
