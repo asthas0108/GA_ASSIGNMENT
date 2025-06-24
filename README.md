@@ -34,9 +34,6 @@ A full-stack web application that facilitates secure deal-making between buyers 
 - After negotiation, Buyer proceeds to payment
 - Razorpay Checkout is launched; payment verified server-side
 
-### 5. 📊 Admin Panel (Optional Extension)
-- View stats: total users, deals, and revenue
-- Only accessible to users with role `"admin"`
 
 ---
 
