@@ -5,7 +5,7 @@ export const createDeal = async (req, res) => {
     const { title, description, price, seller } = req.body;
     const deal = await Deal.create({ title, description, price, seller, buyer: req.user.id });
 
-    await deal.populate("buyer").populate("seller");
+    await deal.populate([{ path: "buyer" }, { path: "seller" }]);
 
     req.io.emit("dealCreated", deal);
 
