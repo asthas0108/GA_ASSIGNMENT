@@ -37,8 +37,6 @@ A full-stack web application that facilitates secure deal-making between buyers 
 
 ---
 
-## 🗂️ Project Structure
-
 ## 📁 Folder Structure
 
 ```plaintext
